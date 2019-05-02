@@ -1,3 +1,4 @@
+//checking if this code is correct
 ---
 hosts:
         all
@@ -9,3 +10,16 @@ tasks:
         debug: var=inventory_hostname
         
         debug: var=ansible_host
+
+
+
+//ERROR:
+ [WARNING]: While constructing a mapping from /home/mandeep/aja2/uptime.yaml, line 9, column 9,
+found a duplicate dict key (debug). Using last defined value only.
+
+ERROR! playbooks must be a list of plays
+
+The error appears to have been in '/home/mandeep/aja2/uptime.yaml': line 2, column 1, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
