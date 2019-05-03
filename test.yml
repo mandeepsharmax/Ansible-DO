@@ -3,32 +3,35 @@
   hosts:
     - PE-ROUTERS
     - CE-ROUTERS
+  roles:
+    - Juniper.junos
   connection: local
   gather_facts: no
 
   vars_prompt:
-   - name: "username"
-      prompt: "Junos Username"
+    - name: username
+      prompts: Junos Username
       private: no
 
-   - name: "password"
-      prompt: "Junos Password"
+    - name: password
+      prompts: Junos Password
       private: yes
 
-
   tasks:
-   - name: get uptime using galaxy module
+    - name: get uptime using galaxy module
       juniper_junos_command:
-        commands: "show system uptime"
-
+        commands:
+          -show system uptime
         provider:
           host: "{{ ansible_host }}"
           port: 22
           user: "{{ username }}"
-          passwd: "{{ password }}"
+          password: "{{ password }}"
+       register: uptime
+    - name: display uptimes
+    - debug:
+        var: uptime
 
-   - debug: var=inventory_hostname
-   - debug: var=ansible_host
 
 
 
