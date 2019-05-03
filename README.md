@@ -1,5 +1,4 @@
-# Ansible-DO
-Juniper Ansible-DO Code 
+# Juniper Ansible Day one Book.
 I am following Juniper Ansible Day One book to test and try all the codings. 
  -Ansible-DO contains:
    -hosts: file contains the mgmt IP of the nodes I am using for the tests. you can download and amend the hosts name as per your need.
