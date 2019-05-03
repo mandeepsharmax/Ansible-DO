@@ -27,7 +27,7 @@
           port: 22
           user: "{{ username }}"
           password: "{{ password }}"
-       register: uptime
+      register: uptime
     - name: display uptimes
     - debug:
         var: uptime
