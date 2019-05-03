@@ -1,8 +1,6 @@
 ---
 - name: NETWORK-DEVICES UPTIME
-  hosts:
-    - PE-ROUTERS
-    - CE-ROUTERS
+  hosts: all
   roles:
     - Juniper.junos
   connection: local
@@ -13,15 +11,17 @@
       prompts: Junos Username
       private: no
 
+
     - name: password
       prompts: Junos Password
       private: yes
+
 
   tasks:
     - name: get uptime using galaxy module
       juniper_junos_command:
         commands:
-          -show system uptime
+          - show system uptime
         provider:
           host: "{{ ansible_host }}"
           port: 22
@@ -29,8 +29,9 @@
           password: "{{ password }}"
       register: uptime
     - name: display uptimes
-    - debug:
-        var: uptime
+      debug:
+        var: uptime.stdout_lines[1]
+
 
 
 
