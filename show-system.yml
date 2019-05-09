@@ -18,10 +18,26 @@
 
 
   tasks:
-    - name: get uptime using galaxy module
+    - name: Single "show version" command.
+      juniper_junos_command:
+        commands: "show version"
+        provider:
+          host: "{{ ansible_host }}"
+          port: 22
+          user: "{{ username }}"
+          password: "{{ password }}"
+      register: uptime
+	  
+    - name: display uptimes
+      debug:
+        var: uptime.stdout_lines
+
+    - name: Single three commands.
       juniper_junos_command:
         commands:
-          - show system uptime
+          - "show version"
+          - "show system uptime"
+          - "show interface terse"
         provider:
           host: "{{ ansible_host }}"
           port: 22
@@ -30,7 +46,22 @@
       register: uptime
     - name: display uptimes
       debug:
-        var: uptime.stdout_lines[1]
+        var: uptime
+
+    - name: get uptime using galaxy module
+      juniper_junos_command:
+        commands:
+          - show system uptime
+          - show chassis hardware detail
+        provider:
+          host: "{{ ansible_host }}"
+          port: 22
+          user: "{{ username }}"
+          password: "{{ password }}"
+      register: uptime
+    - name: display uptimes
+      debug:
+        var: uptime
 
 
 
