@@ -27,7 +27,6 @@
           user: "{{ username }}"
           password: "{{ password }}"
       register: uptime
-	  
     - name: display uptimes
       debug:
         var: uptime.stdout_lines
